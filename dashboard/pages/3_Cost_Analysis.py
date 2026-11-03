@@ -29,7 +29,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.title("💰 Financial & Cost Optimization")
+st.title("Financial & Cost Optimization")
 st.write("Identifies idle compute resources, calculates estimated financial leakage, and ranks cost-saving opportunities.")
 
 # Global Filters in Sidebar
@@ -96,11 +96,11 @@ if exists:
     with col1:
         df_type = get_cost_by_instance_type(provider=selected_provider, region=selected_region)
         fig_type = cost_by_type_donut(df_type)
-        st.plotly_chart(fig_type, use_container_width=True)
+        st.image(fig_type.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
     with col2:
         df_scatter = get_utilization_scatter_data(provider=selected_provider, region=selected_region)
         fig_scatter = utilization_scatter(df_scatter)
-        st.plotly_chart(fig_scatter, use_container_width=True)
+        st.image(fig_scatter.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
         
     st.divider()
     
@@ -108,11 +108,11 @@ if exists:
     col3, col4 = st.columns(2)
     with col3:
         fig_stacked = utilized_vs_wasted_bar(df_spend_breakdown)
-        st.plotly_chart(fig_stacked, use_container_width=True)
+        st.image(fig_stacked.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
     with col4:
         df_trend_90 = get_cost_trend(days=90, provider=selected_provider, region=selected_region)
         fig_forecast = cost_forecast_chart(df_trend_90, forecast_days=90)
-        st.plotly_chart(fig_forecast, use_container_width=True)
+        st.image(fig_forecast.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
         
     st.divider()
     

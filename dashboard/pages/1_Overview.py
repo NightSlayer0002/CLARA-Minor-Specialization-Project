@@ -24,7 +24,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.title("📊 Executive Overview")
+st.title("Executive Overview")
 st.write("Fleet-wide operational risk posture, daily spend histories, and ranked high-risk infrastructure assets.")
 
 # Global Filters in Sidebar
@@ -101,7 +101,7 @@ if exists:
             region=selected_region
         )
         fig_risk = risk_distribution_pie(df_risk)
-        st.plotly_chart(fig_risk, use_container_width=True)
+        st.image(fig_risk.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
         
     with chart_col2:
         df_trend = get_cost_trend(
@@ -110,7 +110,7 @@ if exists:
             region=selected_region
         )
         fig_trend = cost_trend_line(df_trend)
-        st.plotly_chart(fig_trend, use_container_width=True)
+        st.image(fig_trend.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
         
     st.divider()
     

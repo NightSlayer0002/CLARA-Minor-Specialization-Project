@@ -28,7 +28,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.title("🛡️ Security Analysis")
+st.title("Security Analysis")
 st.write("Deep-dive security posture evaluation detailing open ports, encryption status, and failed authorization events.")
 
 # Global Filters in Sidebar
@@ -80,11 +80,11 @@ if exists:
     with col1:
         df_region = get_risk_by_region(provider=selected_provider)
         fig_region = risk_by_region_heatmap(df_region)
-        st.plotly_chart(fig_region, use_container_width=True)
+        st.image(fig_region.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
     with col2:
         df_ports = get_port_exposure(provider=selected_provider, region=selected_region)
         fig_ports = port_exposure_bar(df_ports)
-        st.plotly_chart(fig_ports, use_container_width=True)
+        st.image(fig_ports.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
         
     st.divider()
     
@@ -92,11 +92,11 @@ if exists:
     col3, col4 = st.columns(2)
     with col3:
         fig_vuln = vulnerability_breakdown_pie(df_vuln)
-        st.plotly_chart(fig_vuln, use_container_width=True)
+        st.image(fig_vuln.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
     with col4:
         df_events = get_security_events_timeline(provider=selected_provider, region=selected_region)
         fig_events = security_events_timeline(df_events)
-        st.plotly_chart(fig_events, use_container_width=True)
+        st.image(fig_events.to_image(format="png", width=760, height=420, scale=2), use_column_width=True)
         
     st.divider()
     
